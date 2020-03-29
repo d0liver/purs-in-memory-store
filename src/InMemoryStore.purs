@@ -1,6 +1,6 @@
 module InMemoryStore (
   Key,
-  reserve, release, get, set, (:=)
+  release, exists, get, set, (:=)
 ) where
 
 import Prelude
@@ -20,8 +20,8 @@ foreign import _get :: Key -> Effect Foreign
 foreign import _set :: ∀ a. Key -> a -> Effect Unit
 -- The Boolean indicates success or failure (whether this key has already been
 -- taken).
-foreign import _reserve :: Key -> Effect Boolean
 foreign import release :: Key -> Effect Unit
+foreign import exists :: Key -> Effect Boolean
 
 get :: ∀ a. Decode a => Key -> Effect (Either (NonEmptyList ForeignError) (Maybe a))
 get k = do
@@ -31,8 +31,5 @@ get k = do
 set :: ∀ a. Encode a => Key -> a -> Effect Unit
 set k a = do
   _set k (encode a)
-
-reserve :: Key -> Effect Boolean
-reserve key = _reserve key
 
 infixl 6 set as :=
