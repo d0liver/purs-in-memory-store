@@ -39,10 +39,13 @@
       set("key", "val");
       return assert.equal(get("key"), "val");
     });
-    return it("Should determine whether keys exist", function() {
+    it("Should determine whether keys exist", function() {
       set("key", "val");
       assert.equal(exists("key"), true);
       return assert.equal(exists("foo"), false);
+    });
+    return it("Should always return false for existence checks when the store is null", function() {
+      return assert.equal(exists("flam"), false);
     });
   });
 

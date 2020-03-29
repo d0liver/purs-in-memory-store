@@ -29,6 +29,7 @@ exports.release = function(key) {
 
 exports.exists = function(key) {
   return function() {
-    return key in exports._set.store;
+    var ref;
+    return key in ((ref = exports._set.store) != null ? ref : {});
   };
 };

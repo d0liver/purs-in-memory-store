@@ -26,3 +26,6 @@ describe "InMemoryStore FFI Tests", ->
 		set "key", "val"
 		assert.equal (exists "key"), true
 		assert.equal (exists "foo"), false
+
+	it "Should always return false for existence checks when the store is null", ->
+		assert.equal (exists "flam"), false
