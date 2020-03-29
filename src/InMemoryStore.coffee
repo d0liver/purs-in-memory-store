@@ -9,6 +9,5 @@ exports._set = (key) -> (val) -> ->
 
 	exports._set.store[key] = val
 
-exports._reserve = (key) -> -> exports._set.store?[key]?
-
 exports.release = (key) -> -> delete exports._set.store[key]
+exports.exists = (key) -> -> key of exports._set.store

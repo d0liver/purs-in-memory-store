@@ -3,6 +3,6 @@
     "lodash": "^4.17.15"
   },
   "scripts": {
-    "test": "mocha test/mocha/main.js"
+    "test": "coffee -c test/mocha/main.coffee && mocha test/mocha/main.js"
   }
 }

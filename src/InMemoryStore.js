@@ -21,15 +21,14 @@ exports._set = function(key) {
   };
 };
 
-exports._reserve = function(key) {
-  return function() {
-    var ref;
-    return ((ref = exports._set.store) != null ? ref[key] : void 0) != null;
-  };
-};
-
 exports.release = function(key) {
   return function() {
     return delete exports._set.store[key];
+  };
+};
+
+exports.exists = function(key) {
+  return function() {
+    return key in exports._set.store;
   };
 };
