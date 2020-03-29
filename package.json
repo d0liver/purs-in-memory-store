@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "lodash": "^4.17.15"
+  },
+  "scripts": {
+    "test": "mocha test/mocha/main.js"
   }
 }
