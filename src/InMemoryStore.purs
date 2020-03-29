@@ -23,6 +23,9 @@ foreign import _set :: ∀ a. Key -> a -> Effect Unit
 foreign import release :: Key -> Effect Unit
 foreign import exists :: Key -> Effect Boolean
 
+-- Makes testing a bit easier.
+foreign import flush :: Effect Unit
+
 get :: ∀ a. Decode a => Key -> Effect (Either (NonEmptyList ForeignError) (Maybe a))
 get k = do
   _a <- _get k

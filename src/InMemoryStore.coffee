@@ -11,3 +11,4 @@ exports._set = (key) -> (val) -> ->
 
 exports.release = (key) -> -> delete exports._set.store[key]
 exports.exists = (key) -> -> key of (exports._set.store ? {})
+exports.flush = -> exports._set.store = null

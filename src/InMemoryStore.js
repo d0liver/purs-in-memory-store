@@ -33,3 +33,7 @@ exports.exists = function(key) {
     return key in ((ref = exports._set.store) != null ? ref : {});
   };
 };
+
+exports.flush = function() {
+  return exports._set.store = null;
+};

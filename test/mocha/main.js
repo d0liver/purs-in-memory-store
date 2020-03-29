@@ -25,7 +25,7 @@
   describe("InMemoryStore FFI Tests", function() {
     // Clear the store before running each test
     beforeEach(function() {
-      return storeFfi._set.store = null;
+      return storeFfi.flush();
     });
     it("Should release key values", function() {
       set("key", "val");
@@ -43,6 +43,11 @@
       set("key", "val");
       assert.equal(exists("key"), true);
       return assert.equal(exists("foo"), false);
+    });
+    it("Should not return false positives when the store exists but not the key", function() {
+      // Force the store to initialize
+      set("key", "val");
+      return assert.equal(exists("flim"), false);
     });
     return it("Should always return false for existence checks when the store is null", function() {
       return assert.equal(exists("flam"), false);

@@ -8,7 +8,7 @@ release = (key) -> storeFfi.release(key)()
 
 describe "InMemoryStore FFI Tests", ->
 	# Clear the store before running each test
-	beforeEach -> storeFfi._set.store = null
+	beforeEach -> storeFfi.flush()
 
 	it "Should release key values", ->
 		set "key", "val"
@@ -26,6 +26,11 @@ describe "InMemoryStore FFI Tests", ->
 		set "key", "val"
 		assert.equal (exists "key"), true
 		assert.equal (exists "foo"), false
+
+	it "Should not return false positives when the store exists but not the key", ->
+		# Force the store to initialize
+		set "key", "val"
+		assert.equal (exists "flim"), false
 
 	it "Should always return false for existence checks when the store is null", ->
 		assert.equal (exists "flam"), false
