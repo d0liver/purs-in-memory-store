@@ -1,6 +1,6 @@
 module InMemoryStore (
   Key,
-  release, exists, get, set, (:=)
+  release, flush, exists, get, set, (:=)
 ) where
 
 import Prelude
